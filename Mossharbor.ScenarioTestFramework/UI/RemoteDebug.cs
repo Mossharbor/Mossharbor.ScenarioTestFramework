@@ -1,6 +1,7 @@
 namespace Mossharbor.ScenarioTestFramework
 {
-	using System;
+#if NET40 || NET45 || NET46 || NET47
+    using System;
 	using System.Collections.Generic;
 	using System.ComponentModel;
 	using System.Data;
@@ -12,7 +13,7 @@ namespace Mossharbor.ScenarioTestFramework
 
 	internal partial class RemoteDebug : Form
 	{
-		#region *** Private Fields *******************************************************
+#region *** Private Fields *******************************************************
 
 		private DebugAction daFinalAction;
 		private static System.Windows.Forms.Timer myTimer = new System.Windows.Forms.Timer();
@@ -24,10 +25,10 @@ namespace Mossharbor.ScenarioTestFramework
 			public static string AutoContinueValue = "AutoContinue";
 		}
 
-		#endregion
+#endregion
 
 
-		#region *** Constructor **********************************************************
+#region *** Constructor **********************************************************
 
 		public RemoteDebug()
 		{
@@ -70,10 +71,10 @@ namespace Mossharbor.ScenarioTestFramework
 			HelpToolTip.SetToolTip(SetAsDefaultButton, "Saves the current debug action and\r\nauto-connect setting in your personal\r\npreferences.");
 		}
 
-		#endregion
+#endregion
 
 
-		#region "*** Private Methods *****************************************************************"
+#region "*** Private Methods *****************************************************************"
 
         
 		/// <summary>
@@ -95,7 +96,7 @@ namespace Mossharbor.ScenarioTestFramework
             return ((int)temp != 0) ? true : false;
         }
 
-		#region "*** Timer Handler *******************************************************************"
+#region "*** Timer Handler *******************************************************************"
 
 		//***********************************
 		// This is the method to run when the timer is raised.
@@ -110,10 +111,10 @@ namespace Mossharbor.ScenarioTestFramework
 			}
 		}
 
-		#endregion
+#endregion
 
 
-		#region "*** Debug Action State **************************************************************"
+#region "*** Debug Action State **************************************************************"
 
 		//***********************************
 		private void BreakRadio_CheckedChanged(System.Object sender, System.EventArgs e)
@@ -136,10 +137,10 @@ namespace Mossharbor.ScenarioTestFramework
 			SetAsDefaultButton.Enabled = true;
 		}
 
-		#endregion
+#endregion
 
 
-		#region "*** Button Handlers *****************************************************************"
+#region "*** Button Handlers *****************************************************************"
 
 		//***********************************
 		private void Cancel_Button_Click(System.Object sender, System.EventArgs e)
@@ -165,10 +166,10 @@ namespace Mossharbor.ScenarioTestFramework
 			SetAsDefaultButton.Enabled = false;
 		}
 
-		#endregion
+#endregion
 
 
-		#region "*** Utility Functions ***************************************************************"
+#region "*** Utility Functions ***************************************************************"
 
 		//***********************************
 		private void DoClose(DebugAction daFinal)
@@ -185,19 +186,19 @@ namespace Mossharbor.ScenarioTestFramework
 			Close();
 		}
 
-		#endregion
+#endregion
 
-		#endregion
+#endregion
 
 
-		#region "*** Public Properties ***************************************************************"
+#region "*** Public Properties ***************************************************************"
 
 		public DebugAction FinalAction
 		{
 			get { return daFinalAction; }
 		}
 
-		#endregion
+#endregion
 	}
 
 
@@ -211,4 +212,5 @@ namespace Mossharbor.ScenarioTestFramework
             return dlg.FinalAction;
 		}
 	}
+#endif
 }
