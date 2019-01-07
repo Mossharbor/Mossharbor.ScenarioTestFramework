@@ -17,7 +17,7 @@ namespace ExecutionTests
 
         public CustomBuilder AddTestStep()
         {
-            base.AddStep(() => { Logger.Instance.LogSubResult(Result.Pass, "We Were Called"); });
+            base.AddStep(() => { Logger.LogPass("We Were Called"); });
             return this;
         }
 

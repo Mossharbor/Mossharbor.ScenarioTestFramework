@@ -67,6 +67,7 @@
     <Compile Include="Interfaces\IScenario.cs" />
     <Compile Include="Interfaces\IScenarioFactory.cs" />
     <Compile Include="Interfaces\IScenarioStep.cs" />
+    <Compile Include="InteternalLogger.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Logging\DebugOutputTextWriter.cs" />
     <Compile Include="Logging\DefaultLogProvider.cs" />

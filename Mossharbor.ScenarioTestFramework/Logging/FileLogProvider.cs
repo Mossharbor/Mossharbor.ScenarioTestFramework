@@ -29,7 +29,7 @@ namespace Mossharbor.ScenarioTestFramework
         /// <returns>File name</returns>
         private static string GetFileName()
         {
-            return Path.ChangeExtension(Logger.Instance.LogFileName, "txt");
+            return Path.ChangeExtension(InternalLogger.Instance.LogFileName, "txt");
         }
     }
 }

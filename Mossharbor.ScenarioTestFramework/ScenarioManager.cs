@@ -77,7 +77,7 @@ namespace Mossharbor.ScenarioTestFramework
         public void ExecuteScenarios()
         {
             TaskFactory taskFactory = new TaskFactory();
-            Logger.Instance.StartLogger();
+            InternalLogger.Instance.StartLogger();
             List<IScenario> scenariosRun = new List<IScenario>();
 
             //foreach (string scenarioName in scenarioIds)
@@ -92,7 +92,7 @@ namespace Mossharbor.ScenarioTestFramework
                     ScenariosRun++;
                     var scenario = scenarios[s];
                     scenariosRun.Add(scenario);
-                    Logger.Instance.StartScenario(scenario);
+                    InternalLogger.Instance.StartScenario(scenario);
 
                     int scenarioExecuteTimeout = RuntimeParameters.Instance.OverrideExecuteTimeout > 0 ? RuntimeParameters.Instance.OverrideExecuteTimeout : scenario.ExecuteTimeout;
                     int scenarioCleanupTimeout = RuntimeParameters.Instance.OverrideCleanupTimeout > 0 ? RuntimeParameters.Instance.OverrideCleanupTimeout : scenario.CleanupTimeout;
@@ -107,7 +107,7 @@ namespace Mossharbor.ScenarioTestFramework
                             if (!RuntimeParameters.Instance.NoSetup)
                                 WaitOnTask(taskFactory, scenario, scenarioCleanupTimeout, new SetupTimeoutExceptionException(scenario.Name), () => scenario.SetUp());
                             else
-                                Logger.Instance.WriteLine("Skipping Setup as specified on the command line");
+                                InternalLogger.Instance.WriteLine("Skipping Setup as specified on the command line");
 
                             setupAttempted = true;
 
@@ -118,11 +118,11 @@ namespace Mossharbor.ScenarioTestFramework
                         }
                         catch (ExecuteTimeoutException ex)
                         {
-                            Logger.Instance.WriteException(Result.Timeout, ex, "Scenario execute timed out {0}", scenario.Name);
+                            InternalLogger.Instance.WriteException(Result.Timeout, ex, "Scenario execute timed out {0}", scenario.Name);
                         }
                         catch (SetupTimeoutExceptionException ex)
                         {
-                            Logger.Instance.WriteException(Result.Timeout, ex, "Scenario setup timed out {0}", scenario.Name);
+                            InternalLogger.Instance.WriteException(Result.Timeout, ex, "Scenario setup timed out {0}", scenario.Name);
                         }
                         catch (Exception e)
                         {
@@ -133,20 +133,20 @@ namespace Mossharbor.ScenarioTestFramework
                                 string message = "{1}: {0}";
                                 if (scenario.ExceptionAreProductExceptions)
                                 {
-                                    Logger.Instance.WriteException(Result.ProductException, extoLog, message, extoLog.Message, exType);
-                                    Logger.Instance.LogSubResult(Result.ProductException, message, extoLog.Message, exType);
+                                    InternalLogger.Instance.WriteException(Result.ProductException, extoLog, message, extoLog.Message, exType);
+                                    InternalLogger.Instance.LogSubResult(Result.ProductException, message, extoLog.Message, exType);
                                 }
                                 else
                                 {
-                                    Logger.Instance.WriteException(Result.Exception, extoLog, message, extoLog.Message, exType);
-                                    Logger.Instance.LogSubResult(Result.Exception, message, extoLog.Message, exType);
+                                    InternalLogger.Instance.WriteException(Result.Exception, extoLog, message, extoLog.Message, exType);
+                                    InternalLogger.Instance.LogSubResult(Result.Exception, message, extoLog.Message, exType);
                                 }
                             }
                             else
                             {
                                 string message = "SetupFailed: {1}: {0}";
-                                Logger.Instance.WriteException(Result.Exception, extoLog, message, extoLog.Message, exType);
-                                Logger.Instance.LogSubResult(Result.Exception, message, extoLog.Message, exType);
+                                InternalLogger.Instance.WriteException(Result.Exception, extoLog, message, extoLog.Message, exType);
+                                InternalLogger.Instance.LogSubResult(Result.Exception, message, extoLog.Message, exType);
                             }
                             
                             //if (ex is AggregateException)
@@ -160,21 +160,21 @@ namespace Mossharbor.ScenarioTestFramework
                                 if (!RuntimeParameters.Instance.NoCleanup)
                                     WaitOnTask(taskFactory, scenario, scenarioCleanupTimeout, new CleanupTimeoutException(scenario.Name), () => scenario.CleanUp());
                                 else
-                                    Logger.Instance.WriteLine("Skipping scenario cleanup as specified on command line");
+                                    InternalLogger.Instance.WriteLine("Skipping scenario cleanup as specified on command line");
                             }
                             catch (CleanupTimeoutException ex)
                             {
-                                Logger.Instance.WriteException(Result.Timeout, ex, "Scenario cleanup timedout {0}", scenario.Name);
+                                InternalLogger.Instance.WriteException(Result.Timeout, ex, "Scenario cleanup timedout {0}", scenario.Name);
                             }
                             catch (Exception ex)
                             {
                                 string message = "Failed to execute scenario {0}";
-                                Logger.Instance.WriteException(Result.Exception, ex, message, scenario.Name);
+                                InternalLogger.Instance.WriteException(Result.Exception, ex, message, scenario.Name);
                             }
                         }
                     }
 
-                    Logger.Instance.StopScenario(scenario);
+                    InternalLogger.Instance.StopScenario(scenario);
                 } // scenario in list
             }//scenario name
 
@@ -187,15 +187,15 @@ namespace Mossharbor.ScenarioTestFramework
                     if (!RuntimeParameters.Instance.NoCleanup)
                         WaitOnTask(taskFactory, scenario, scenarioCleanupTimeout, new CleanupTimeoutException(scenario.Name), () => scenario.EndRunCleanup());
                     else
-                        Logger.Instance.WriteLine("Skipping end of all scenarios cleanup as specified on command line");
+                        InternalLogger.Instance.WriteLine("Skipping end of all scenarios cleanup as specified on command line");
                 }
                 catch (Exception ex)
                 {
-                    Logger.Instance.WriteException(Result.Exception, ex, "Failed to EndRunCleanup for scenario {0}",scenario.Name);
+                    InternalLogger.Instance.WriteException(Result.Exception, ex, "Failed to EndRunCleanup for scenario {0}",scenario.Name);
                 }
             }
 
-            Logger.Instance.StopLogger();
+            InternalLogger.Instance.StopLogger();
         }
 
         public void ExecuteScenario(string assembly, string factory, string scenarioName)

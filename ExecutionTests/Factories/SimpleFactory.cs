@@ -29,12 +29,12 @@ namespace ExecutionTests
                     AddScenario("VerifyBasicAdd", true);
                     break;
                 case "VerifyBasicAdd":
-                    this.Add(() => { Logger.Instance.WriteLine("Hello VerifyBasicAdd"); });
+                    this.Add(() => { Logger.WriteLine("Hello VerifyBasicAdd"); });
                     break;
 
                 case "VerifyAddBasicSubScenario":
-                    this.Add(() => { Logger.Instance.WriteLine("Hello VerifyBasicAdd"); });
-                    this.Add(() => { Logger.Instance.WriteLine("There VerifyAddBasicSubScenario"); });
+                    this.Add(() => { Logger.WriteLine("Hello VerifyBasicAdd"); });
+                    this.Add(() => { Logger.WriteLine("There VerifyAddBasicSubScenario"); });
                     break;
             }
         }

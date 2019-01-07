@@ -18,7 +18,7 @@ namespace ExecutionTests
                 {
                     return new Scenario("VerifyBasicAdd", "ExecutionTests", "", null, () =>
                         {
-                            Logger.Instance.WriteLine("Hello VerifyBasicAdd");
+                            Logger.WriteLine("Hello VerifyBasicAdd");
                         }, null, null);
                 }
             },
@@ -26,10 +26,10 @@ namespace ExecutionTests
                 {
                     Scenario v = new Scenario("VerifyBasicAdd2", "ExecutionTests", "", null, () =>
                         {
-                            Logger.Instance.WriteLine("Hello");
+                            Logger.WriteLine("Hello");
                         }, null, null);
 
-                    v.Add(() => { Logger.Instance.WriteLine("There VerifyAddBasicSubScenario"); });
+                    v.Add(() => { Logger.WriteLine("There VerifyAddBasicSubScenario"); });
                     return v;
                 }
             }
