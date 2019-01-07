@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace ScenarioExecutionAssistant
 {
-    using ScenarioExecutionFramework;
+    using Mossharbor.ScenarioTestFramework;
 
     class Program
     {
         static void Main(string[] args)
         {
-            ScenarioExecutionFramework.RuntimeParameters.Instance.Parse(args);
+            Mossharbor.ScenarioTestFramework.RuntimeParameters.Instance.Parse(args);
 
             string assembly = RuntimeParameters.Instance.AssemblyContainingFactory;
             string factory = RuntimeParameters.Instance.FactoryContainingScenario;

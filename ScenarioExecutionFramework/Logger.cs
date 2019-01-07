@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ScenarioExecutionFramework
+namespace Mossharbor.ScenarioTestFramework
 {
-    using ScenarioExecutionFramework.Exceptions;
+    using Mossharbor.ScenarioTestFramework.Exceptions;
     using System;
     using System.Collections.Generic;
     using System.Collections.Specialized;

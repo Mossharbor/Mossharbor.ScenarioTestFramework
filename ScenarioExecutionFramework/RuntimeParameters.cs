@@ -4,7 +4,7 @@ using System.Linq;
 using System.IO;
 using System.Diagnostics;
 
-namespace ScenarioExecutionFramework
+namespace Mossharbor.ScenarioTestFramework
 {
     public class RuntimeParameters
     {

@@ -1,10 +1,10 @@
-﻿using ScenarioExecutionFramework.Exceptions;
+﻿using Mossharbor.ScenarioTestFramework.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ScenarioExecutionFramework
+namespace Mossharbor.ScenarioTestFramework
 {
     internal class ScenarioStep :IScenarioStep
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.ComponentModel;
 
-namespace ScenarioExecutionFramework
+namespace Mossharbor.ScenarioTestFramework
 {
     class CommandLineSwitches
     {

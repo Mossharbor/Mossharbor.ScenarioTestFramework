@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ScenarioExecutionFramework
+namespace Mossharbor.ScenarioTestFramework
 {
     public abstract class ScenarioBuilder
     {

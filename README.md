@@ -1,2 +1,2 @@
-# ScenarioTestAlizer
-A framework for writing scenario tests in a modular componentized fashion.
+# Mossharbor.TestFramework
+A framework for easily writing scenario based tests

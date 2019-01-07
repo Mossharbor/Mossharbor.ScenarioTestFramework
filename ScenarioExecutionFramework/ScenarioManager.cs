@@ -4,11 +4,11 @@ using System.Collections.Concurrent;
 using System.Linq;
 using System.Reflection;
 using System.IO;
-using ScenarioExecutionFramework.Exceptions;
+using Mossharbor.ScenarioTestFramework.Exceptions;
 using System.Threading.Tasks;
 using System.Diagnostics;
 
-namespace ScenarioExecutionFramework
+namespace Mossharbor.ScenarioTestFramework
 {
     public class ScenarioManager
     {

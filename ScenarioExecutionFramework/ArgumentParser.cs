@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ScenarioExecutionFramework
+namespace Mossharbor.ScenarioTestFramework
 {
     using System.IO;
     using System.Collections.Specialized;
     using System.Text.RegularExpressions;
-    using ScenarioExecutionFramework.Exceptions;
+    using Mossharbor.ScenarioTestFramework.Exceptions;
 
     class ArgumentParser
     {

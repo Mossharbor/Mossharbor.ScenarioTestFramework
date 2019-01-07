@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace ExecutionTests
 {
     using System.Reflection;
-    using ScenarioExecutionFramework;
+    using Mossharbor.ScenarioTestFramework;
 
     [TestClass]
     public class FactoryTests

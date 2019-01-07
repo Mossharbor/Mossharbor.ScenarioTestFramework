@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ExecutionTests
 {
-    using ScenarioExecutionFramework;
+    using Mossharbor.ScenarioTestFramework;
     public class BasicCustomFactory : IScenarioFactory
     {
         public string Assembly { get; set; }

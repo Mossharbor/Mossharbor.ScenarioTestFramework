@@ -1,4 +1,4 @@
-namespace ScenarioExecutionFramework
+namespace Mossharbor.ScenarioTestFramework
 {
 	partial class RemoteDebug
 	{
