@@ -48,9 +48,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ScenarioExecutionFramework\ScenarioExecutionFramework.csproj">
+    <ProjectReference Include="..\ScenarioExecutionFramework\Mossharbor.ScenarioTestFramework.csproj">
       <Project>{4e53f007-33d0-42df-a9d8-d224bc2f1b03}</Project>
-      <Name>ScenarioExecutionFramework</Name>
+      <Name>Mossharbor.ScenarioTestFramework</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

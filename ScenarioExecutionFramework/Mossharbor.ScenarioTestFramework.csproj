@@ -7,8 +7,8 @@
     <ProjectGuid>{4E53F007-33D0-42DF-A9D8-D224BC2F1B03}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ScenarioExecutionFramework</RootNamespace>
-    <AssemblyName>ScenarioExecutionFramework</AssemblyName>
+    <RootNamespace>Mossharbor.ScenarioTestFramework</RootNamespace>
+    <AssemblyName>Mossharbor.ScenarioTestFramework</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
