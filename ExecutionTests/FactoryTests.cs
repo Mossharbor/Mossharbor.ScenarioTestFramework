@@ -20,6 +20,18 @@ namespace ExecutionTests
             }
             finally { ScenarioManager.Instance.Clear(); Assert.AreEqual(ScenarioManager.Instance.ScenariosRun, 0); }
         }
+
+        [TestMethod]
+        public void TestWeSearchAllAssemblies()
+        {
+            try
+            {
+                ScenarioManager.Instance.ExecuteScenario("ExecutionTests", "VerifyBasicAddForCustomBuilder");
+                Assert.AreEqual(ScenarioManager.Instance.ScenariosRun, 1);
+            }
+            finally { ScenarioManager.Instance.Clear(); Assert.AreEqual(ScenarioManager.Instance.ScenariosRun, 0); }
+        }
+
         [TestMethod]
         public void VerifyBasicCustomFactoryAdd()
         {
