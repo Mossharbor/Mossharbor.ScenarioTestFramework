@@ -48,7 +48,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ScenarioExecutionFramework\Mossharbor.ScenarioTestFramework.csproj">
+    <ProjectReference Include="..\Mossharbor.ScenarioTestFramework\Mossharbor.ScenarioTestFramework.csproj">
       <Project>{4e53f007-33d0-42df-a9d8-d224bc2f1b03}</Project>
       <Name>Mossharbor.ScenarioTestFramework</Name>
     </ProjectReference>
