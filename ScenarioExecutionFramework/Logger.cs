@@ -210,11 +210,6 @@ namespace ScenarioExecutionFramework
         }
 
         /// <summary>
-        /// True if initialization is complete
-        /// </summary>
-        private bool isInitComplete;
-
-        /// <summary>
         /// This is set to true once the StartLogger function has been called.
         /// </summary>
         private bool loggerStarted = false;

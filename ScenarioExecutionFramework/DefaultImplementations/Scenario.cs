@@ -35,12 +35,21 @@ namespace ScenarioExecutionFramework
         }
         private bool exceptionAreProductExceptions = true;
 
+        internal Scenario()
+        {
+        }
+
         public Scenario(string name, string module, string description, Action toSetup, Action toExecute, Action toCleanUp, Action endRunCleanup)
         {
             this.Name = name;
             this.Assembly = module;
             this.Description = description;
             toExec.Add(new ScenarioItem(toSetup, toExecute, toCleanUp, endRunCleanup));
+        }
+        
+        public Scenario(string name, string module, string description, Action toExecute)
+            :this(name, module, description, null, toExecute, null, null)
+        {
         }
 
         public Scenario(Action toSetup, Action toExecute, Action toCleanUp, Action endRunCleanup)
@@ -81,6 +90,11 @@ namespace ScenarioExecutionFramework
         public void Add(IScenario subScenario)
         {
             toExec.Add(new ScenarioItem(()=>subScenario.CleanUp(), ()=>subScenario.Execute(), ()=>subScenario.CleanUp(), ()=>subScenario.EndRunCleanup()));
+        }
+        
+        public void Add(IScenarioStep scenarioStep)
+        {
+            toExec.Add(new ScenarioItem(() => scenarioStep.CleanUp(), () => scenarioStep.ExecuteStep(), () => scenarioStep.CleanUp(), () => scenarioStep.EndRunCleanUp()));
         }
 
         public void SetUp()

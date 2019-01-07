@@ -198,10 +198,17 @@ namespace ScenarioExecutionFramework
             Logger.Instance.StopLogger();
         }
 
-        public void ExecuteScenario(string assembly, string scenarioName, string factory = null)
+        public void ExecuteScenario(string assembly, string factory, string scenarioName)
         {
             if (!String.IsNullOrEmpty(factory) && !String.IsNullOrEmpty(assembly))
-                ScenarioManager.Instance.LoadFactory(assembly, factory);
+            {
+                Assembly scenarioAssembly = LoadAssembly(assembly);
+
+                if (null == scenarioAssembly)
+                    throw new CouldNotFindScenarioFactoryAssemblyException(assembly);
+
+                LoadScenarioFactory(factory, scenarioAssembly);
+            }
             else if (!String.IsNullOrEmpty(assembly))
                 ScenarioManager.Instance.LoadFactory(assembly);
             else
@@ -209,6 +216,11 @@ namespace ScenarioExecutionFramework
 
             ScenarioManager.Instance.LoadScenario(scenarioName);
             ScenarioManager.Instance.ExecuteScenarios();
+        }
+
+        public void ExecuteScenario(string assembly, string scenarioName)
+        {
+            ExecuteScenario(assembly, null, scenarioName);
         }
 
         public void ExecuteScenario(IScenarioFactory factory, string scenarioName)

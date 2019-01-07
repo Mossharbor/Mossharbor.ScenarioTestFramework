@@ -8,7 +8,6 @@ namespace ScenarioExecutionFramework
 {
     public abstract class SimpleFactory : IScenarioFactory
     {
-        bool firstCallToModifyScenarioWith = false;
         int scenarioSteps = 1;
         Scenario currentScenario = null;
         protected Scenario CurrentScenario{get { return currentScenario; }}
@@ -22,7 +21,6 @@ namespace ScenarioExecutionFramework
         public IScenario[] GetScenarios(string scenarioName)
         {
             scenarios.Clear();
-            firstCallToModifyScenarioWith = true;
             ModifyScenarioWith(scenarioName);
             ScenarioFinished();
             return scenarios.ToArray();

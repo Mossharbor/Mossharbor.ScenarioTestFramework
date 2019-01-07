@@ -11,6 +11,16 @@ namespace ExecutionTests
     public class FactoryTests
     {
         [TestMethod]
+        public void VerifyBasicAddForCustomBuilder()
+        {
+            try
+            {
+                ScenarioManager.Instance.ExecuteScenario("ExecutionTests", "CustomBuilderFactory", "VerifyBasicAddForCustomBuilder");
+                Assert.AreEqual(ScenarioManager.Instance.ScenariosRun, 1);
+            }
+            finally { ScenarioManager.Instance.Clear(); Assert.AreEqual(ScenarioManager.Instance.ScenariosRun, 0); }
+        }
+        [TestMethod]
         public void VerifyBasicCustomFactoryAdd()
         {
             try

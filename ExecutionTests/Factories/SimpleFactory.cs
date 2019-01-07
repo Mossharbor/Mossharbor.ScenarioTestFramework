@@ -20,7 +20,7 @@ namespace ExecutionTests
             }
         }
 
-        protected override void ModifyScenarioWith(string scenarioName)
+        public override void ModifyScenarioWith(string scenarioName)
         {
             switch (scenarioName)
             {

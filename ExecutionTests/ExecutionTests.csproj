@@ -52,6 +52,8 @@
   <ItemGroup>
     <Compile Include="Factories\BasicCustomFactory.cs" />
     <Compile Include="Factories\BasicQuickFactory.cs" />
+    <Compile Include="Factories\CustomBuilder.cs" />
+    <Compile Include="Factories\CustomBuilderFactory.cs" />
     <Compile Include="FactoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Factories\SimpleFactory.cs" />

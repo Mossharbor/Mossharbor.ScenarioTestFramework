@@ -36,5 +36,9 @@ namespace ScenarioExecutionFramework
         void CleanUp();
 
         void EndRunCleanup();
+
+        void Add(IScenarioStep scenarioStep);
+
+        void Add(IScenario subScenario);
     }
 }

@@ -45,6 +45,7 @@
     <Compile Include="ArgumentParser.cs" />
     <Compile Include="CommandLineSwitches.cs" />
     <Compile Include="DefaultImplementations\QuickFactory.cs" />
+    <Compile Include="DefaultImplementations\ScenarioStep.cs" />
     <Compile Include="DefaultImplementations\SimpleTestFactory.cs" />
     <Compile Include="DefaultImplementations\Scenario.cs" />
     <Compile Include="Enums.cs" />
@@ -58,6 +59,7 @@
     <Compile Include="Exceptions\CouldNotFindScenarioFactory.cs" />
     <Compile Include="Exceptions\CouldNotFindScenarioFactoryAssembly.cs" />
     <Compile Include="Exceptions\ExecuteTimeout.cs" />
+    <Compile Include="Exceptions\ExecutionStepIsEmpty.cs" />
     <Compile Include="Exceptions\SetupTimeout.cs" />
     <Compile Include="Exceptions\UnknownCommandLineParameters.cs" />
     <Compile Include="Exceptions\UsageNeeded.cs" />
@@ -71,6 +73,7 @@
     <Compile Include="Logging\FileLogProvider.cs" />
     <Compile Include="Logging\LogResult.cs" />
     <Compile Include="Logging\ScreenCapture.cs" />
+    <Compile Include="ScenarioBuilder.cs" />
     <Compile Include="ScenarioManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RuntimeParameters.cs" />
