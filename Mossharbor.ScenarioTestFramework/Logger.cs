@@ -31,7 +31,7 @@ namespace Mossharbor.ScenarioTestFramework
         /// <c>Result.Fail</c>.
         /// </remarks>
         /// <value>The most-recently computed result for the current test case</value>
-        public Result CurrentResult
+        public static Result CurrentResult
         {
             get
             {
