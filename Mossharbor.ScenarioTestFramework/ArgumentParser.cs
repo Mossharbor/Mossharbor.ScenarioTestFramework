@@ -25,7 +25,7 @@ namespace Mossharbor.ScenarioTestFramework
             string lastOption = null;
             string potentialOption = null;
             
-            foreach (string arg in args.Skip(1)) // skip first action (aka this.Command);
+            foreach (string arg in args)
             {
                 if (IsOption(arg, out potentialOption))
                 {
