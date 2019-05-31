@@ -287,11 +287,20 @@ namespace Mossharbor.ScenarioTestFramework
         /// </summary>
         public void StopScenario()
         {
-            string elapsed = InternalLogger.Instance.ScenarioElapsedTime.TotalMinutes.ToString("0.00");
+            TimeSpan elapsedTime = InternalLogger.Instance.ScenarioElapsedTime;
+            string elapsedMin = elapsedTime.TotalMinutes.ToString("00");
+            string elapsedSec = elapsedTime.Seconds.ToString("00");
 
             WriteDivider('-');
             this.stream.WriteLine("END TIME: {0:yyyy-MM-dd HH:mm:ss}", InternalLogger.Instance.CurrentTime);
-            this.stream.WriteLine("ELAPSED:  {0} minutes.", elapsed);
+            if (elapsedTime.TotalMinutes >= 1)
+            {
+                this.stream.WriteLine("ELAPSED:  {0} minutes {1} seconds.", elapsedMin, elapsedSec);
+            }
+            else
+            {
+                this.stream.WriteLine("ELAPSED:  {0} seconds.", elapsedSec);
+            }
             WriteDivider('-');
         }
 

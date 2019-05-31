@@ -2,14 +2,14 @@
 <package >
   <metadata>
     <id>Mossharbor.ScenarioTestFramework</id>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <authors>M@ J.</authors>
     <owners>M@ J.</owners>
     <licenseUrl>https://raw.githubusercontent.com/Mossharbor/Mossharbor.ScenarioTestFramework/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/Mossharbor/Mossharbor.ScenarioTestFramework</projectUrl>
     <!-- <iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl> -->
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Updated logger current result to be static</description>
+    <description>Fixed some command line issues</description>
     <releaseNotes></releaseNotes>
     <copyright>Copyright 2019 Mossharbor</copyright>
     <tags>ServiceBus dotnetcore Azure</tags>
