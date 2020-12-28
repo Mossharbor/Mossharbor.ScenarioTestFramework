@@ -100,12 +100,19 @@ namespace Mossharbor.ScenarioTestFramework
 
         private bool IsOption(string arg, out string lastOption)
         {
-            bool isOption = arg.Trim().StartsWith("-") || arg.Trim().StartsWith("/");
+            bool startsWithSlash = arg.Trim().StartsWith("/");
+            bool startsWithDash = arg.Trim().StartsWith("-");
+            bool isOption = startsWithSlash || startsWithDash;
 
             if (!isOption)
             {
                 lastOption = String.Empty;
                 return isOption;
+            }
+            else if (startsWithDash && (Directory.Exists(arg.Trim()) || File.Exists(arg.Trim())))
+            {
+                lastOption = String.Empty;
+                return false;
             }
 
             lastOption = arg.ToLowerInvariant().Trim().TrimStart("-".ToCharArray()).TrimStart("/".ToCharArray());
