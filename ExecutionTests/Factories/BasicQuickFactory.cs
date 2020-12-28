@@ -16,11 +16,11 @@ namespace ExecutionTests
             {
                 return new Dictionary<string, Func<IScenario>>
                 {
-                   {"VerifyBasicAdd"             ,()=> { return new Scenario(() => { Logger.Instance.WriteLine("Hello VerifyBasicAdd"); }); }}
+                   {"VerifyBasicAdd"             ,()=> { return new Scenario(() => { Logger.WriteLine("Hello VerifyBasicAdd"); }); }}
                   ,{"VerifyAddBasicSubScenario"  ,()=> 
                   { 
-                      var v = new Scenario(() => { Logger.Instance.WriteLine("Hello VerifyBasicAdd"); });
-                      v.Add(() => { Logger.Instance.WriteLine("There VerifyAddBasicSubScenario");});
+                      var v = new Scenario(() => { Logger.WriteLine("Hello VerifyBasicAdd"); });
+                      v.Add(() => { Logger.WriteLine("There VerifyAddBasicSubScenario");});
                       return v;
                   }}
                 };

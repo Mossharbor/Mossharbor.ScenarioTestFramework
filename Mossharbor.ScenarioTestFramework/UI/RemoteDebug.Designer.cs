@@ -1,5 +1,6 @@
 namespace Mossharbor.ScenarioTestFramework
 {
+#if NET40 || NET45 || NET46 || NET47
 	partial class RemoteDebug
 	{
 		/// <summary>
@@ -20,7 +21,7 @@ namespace Mossharbor.ScenarioTestFramework
 			base.Dispose(disposing);
 		}
 
-		#region Windows Form Designer generated code
+    #region Windows Form Designer generated code
 
 		/// <summary>
 		/// Required method for Designer support - do not modify
@@ -141,7 +142,7 @@ namespace Mossharbor.ScenarioTestFramework
 
 		}
 
-		#endregion
+    #endregion
 
 		private System.Windows.Forms.Button SetAsDefaultButton;
 		private System.Windows.Forms.CheckBox AutoContinueCheck;
@@ -153,4 +154,5 @@ namespace Mossharbor.ScenarioTestFramework
 		private System.Windows.Forms.Button ContinueButton;
 		private System.Windows.Forms.Button Cancel_Button;
 	}
+#endif
 }

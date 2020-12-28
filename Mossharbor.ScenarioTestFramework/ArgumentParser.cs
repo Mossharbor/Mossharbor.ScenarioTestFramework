@@ -24,20 +24,8 @@ namespace Mossharbor.ScenarioTestFramework
             unknownParams = new StringDictionary();
             string lastOption = null;
             string potentialOption = null;
-
-            if (args.Length == 0)
-                throw new UsageNeededException();
-            else if (!IsOption(args[0], out potentialOption))
-            {
-                this.Command = String.IsNullOrEmpty(potentialOption) ? args[0] : potentialOption;
-                lastOption = this.Command;
-                if (args.Length > 1 && !IsOption(args[1], out potentialOption))
-                    this.CommandValue = args[1];
-            }
-            else
-                throw new UsageNeededException();
-
-            foreach (string arg in args.Skip(1)) // skip first action (aka this.Command);
+            
+            foreach (string arg in args)
             {
                 if (IsOption(arg, out potentialOption))
                 {
@@ -52,13 +40,7 @@ namespace Mossharbor.ScenarioTestFramework
                 }
                 else if (null != lastOption)
                 {
-                    if (!parameters.ContainsKey(this.Command) && (File.Exists(arg) || Directory.Exists(arg) || arg.StartsWith("...")))
-                    {
-                        this.CommandValue = arg;
-                        parameters.Add(this.Command, arg);
-                        unknownParams.Add(this.Command, arg);
-                    }
-                    else if (!parameters.ContainsKey(lastOption))
+                    if (!parameters.ContainsKey(lastOption))
                     {
                         unknownParams.Add(lastOption, arg);
                         parameters.Add(lastOption, arg);
@@ -83,19 +65,6 @@ namespace Mossharbor.ScenarioTestFramework
         public System.Collections.IEnumerator UnknownParams
         {
             get { return unknownParams.GetEnumerator(); }
-        }
-
-        private string command = String.Empty;
-        public string Command
-        {
-            get { return command.ToLowerInvariant(); }
-            private set { command = value; }
-        }
-
-        public string CommandValue
-        {
-            get;
-            set;
         }
 
         private bool IsOption(string arg, out string lastOption)

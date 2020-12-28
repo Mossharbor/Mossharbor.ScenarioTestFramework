@@ -101,12 +101,12 @@ namespace Mossharbor.ScenarioTestFramework
                         }
                         else
                         {
-                            Logger.Instance.LogSubResult(Result.InfrastructureWarning, "Could not attain build number from specified source module '{0}'", this.BuildNumberSourceModule);
+                            InternalLogger.Instance.LogSubResult(Result.InfrastructureWarning, "Could not attain build number from specified source module '{0}'", this.BuildNumberSourceModule);
                         }
                     }
                     else
                     {
-                        Logger.Instance.LogSubResult(Result.InfrastructureWarning, "Could not find specified build number source module '{0}'", this.BuildNumberSourceModule);
+                        InternalLogger.Instance.LogSubResult(Result.InfrastructureWarning, "Could not find specified build number source module '{0}'", this.BuildNumberSourceModule);
                     }
                 }
 
@@ -118,7 +118,7 @@ namespace Mossharbor.ScenarioTestFramework
                     // Make sure the string is valid
                     if (String.IsNullOrEmpty(this.buildNumber))
                     {
-                        Logger.Instance.LogSubResult(Result.InfrastructureWarning, "Build number parameter specified in the command line, but is null or empty");
+                        InternalLogger.Instance.LogSubResult(Result.InfrastructureWarning, "Build number parameter specified in the command line, but is null or empty");
                     }
                 }
 
@@ -140,7 +140,7 @@ namespace Mossharbor.ScenarioTestFramework
 
                     if (String.IsNullOrEmpty(this.buildNumber))
                     {
-                        Logger.Instance.LogSubResult(Result.InfrastructureWarning, "Could not attain build number from the current process '{0}'", process.ProcessName);
+                        InternalLogger.Instance.LogSubResult(Result.InfrastructureWarning, "Could not attain build number from the current process '{0}'", process.ProcessName);
                     }
                 }
 

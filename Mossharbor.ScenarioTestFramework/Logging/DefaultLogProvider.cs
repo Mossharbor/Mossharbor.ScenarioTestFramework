@@ -141,7 +141,7 @@ namespace Mossharbor.ScenarioTestFramework
             //    this.stream.WriteLine("    {0}", parameter);
             //}
             this.stream.WriteLine(" -id " + scenario.Assembly + ":" + scenario.Factory + ":" + scenario.Name);
-            this.stream.WriteLine("START TIME: {0:yyyy-MM-dd HH:mm:ss}", Logger.Instance.ScenarioStartTime);
+            this.stream.WriteLine("START TIME: {0:yyyy-MM-dd HH:mm:ss}", InternalLogger.Instance.ScenarioStartTime);
             WriteDivider();
             this.stream.WriteLine();
             this.stream.WriteLine();
@@ -287,11 +287,20 @@ namespace Mossharbor.ScenarioTestFramework
         /// </summary>
         public void StopScenario()
         {
-            string elapsed = Logger.Instance.ScenarioElapsedTime.TotalMinutes.ToString("0.00");
+            TimeSpan elapsedTime = InternalLogger.Instance.ScenarioElapsedTime;
+            string elapsedMin = elapsedTime.TotalMinutes.ToString("00");
+            string elapsedSec = elapsedTime.Seconds.ToString("00");
 
             WriteDivider('-');
-            this.stream.WriteLine("END TIME: {0:yyyy-MM-dd HH:mm:ss}", Logger.Instance.CurrentTime);
-            this.stream.WriteLine("ELAPSED:  {0} minutes.", elapsed);
+            this.stream.WriteLine("END TIME: {0:yyyy-MM-dd HH:mm:ss}", InternalLogger.Instance.CurrentTime);
+            if (elapsedTime.TotalMinutes >= 1)
+            {
+                this.stream.WriteLine("ELAPSED:  {0} minutes {1} seconds.", elapsedMin, elapsedSec);
+            }
+            else
+            {
+                this.stream.WriteLine("ELAPSED:  {0} seconds.", elapsedSec);
+            }
             WriteDivider('-');
         }
 
@@ -301,7 +310,7 @@ namespace Mossharbor.ScenarioTestFramework
         public void StopLogger()
         {
             // If logging a summary
-            if (Logger.Instance.LogResultSummary != LogResults.None)
+            if (InternalLogger.Instance.LogResultSummary != LogResults.None)
             {
                 // Write the final results summary
                 this.WriteResultSummary();
@@ -329,7 +338,7 @@ namespace Mossharbor.ScenarioTestFramework
                 Dictionary<string, Dictionary<string, List<string>>> failedMessages = new Dictionary<string, Dictionary<string, List<string>>>();
 
                 // Write results summary
-                foreach (var key in Logger.Instance.LoggedResults)
+                foreach (var key in InternalLogger.Instance.LoggedResults)
                 {
                     foreach (LogResult logResult in key.Value)
                     {
