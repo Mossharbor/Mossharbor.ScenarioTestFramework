@@ -280,7 +280,7 @@ namespace Mossharbor.ScenarioTestFramework
                 }
             }
 
-            if (String.IsNullOrEmpty(this.textLogFileName))
+            if (String.IsNullOrEmpty(this.textLogFileName) && RuntimeParameters.Instance.GetCommandLineOptionExists(CommandLineSwitches.Out))
             {
                 DateTime time = DateTime.Now;
 
