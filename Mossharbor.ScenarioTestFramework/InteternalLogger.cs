@@ -321,7 +321,7 @@ namespace Mossharbor.ScenarioTestFramework
             this.logProviders.Add(lp);
             logProviderActivityList.Add(lp.LogProviderName, true);
 
-            if (Path.GetExtension(this.logFileName) == ".txt" || Path.GetExtension(this.logFileName) == ".log")
+            if (RuntimeParameters.Instance.GetCommandLineOptionExists(CommandLineSwitches.Out) && (Path.GetExtension(this.logFileName) == ".txt" || Path.GetExtension(this.logFileName) == ".log"))
             {
                 LoadLogProvider(new FileLogProvider(Path.Combine(this.logFileDirectory, this.logFileName)), true);
             }
