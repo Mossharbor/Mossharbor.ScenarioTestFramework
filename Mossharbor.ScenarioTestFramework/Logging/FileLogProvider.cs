@@ -13,23 +13,17 @@ namespace Mossharbor.ScenarioTestFramework
 
     public class FileLogProvider : DefaultLogProvider, ILogProvider
     {
+        private string logFile = null;
+
         /// <summary>
         /// constructor
         /// </summary>
-        public FileLogProvider()
-            : base(new StreamWriter(GetFileName(), false), GetFileName())
+        public FileLogProvider(string logFile)
+            : base(new StreamWriter(logFile, false), Path.GetFileNameWithoutExtension(logFile))
         {
             this.LogProviderName = "FileLogProvider";
             ((StreamWriter)base.Stream).AutoFlush = true;
-        }
-
-        /// <summary>
-        /// Get file provider name
-        /// </summary>
-        /// <returns>File name</returns>
-        private static string GetFileName()
-        {
-            return Path.ChangeExtension(InternalLogger.Instance.LogFileName, "txt");
+            this.logFile = logFile;
         }
     }
 }

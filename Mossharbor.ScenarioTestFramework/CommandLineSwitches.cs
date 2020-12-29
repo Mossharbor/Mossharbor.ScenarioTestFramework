@@ -32,6 +32,12 @@ namespace Mossharbor.ScenarioTestFramework
         public const string ScenarioId = "id";
 
         /// <summary>
+        /// -id ScenarioDll:TestID:TacticsID indicates which test to run.
+        /// </summary>
+        [Description("The output file or directory to log output to.")]
+        public const string Out = "out";
+
+        /// <summary>
         /// Defines if the No Kill option was specified.
         /// </summary>
         [Description("Sets the NoKill flag to true. Scenarios interpret this per their needs (usually in cleanup)")]

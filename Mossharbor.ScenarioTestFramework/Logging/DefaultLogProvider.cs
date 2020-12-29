@@ -108,16 +108,25 @@ namespace Mossharbor.ScenarioTestFramework
 
         private void WriteDivider(char devChar ='*')
         {
-            int repeat = 90;
-
-            if (this.stream == Console.Out)
+            try
             {
-                repeat = Console.WindowWidth;
-            }
+                int repeat = 90;
 
-            for (int i = 0; i < repeat - 1; ++i)
-                this.stream.Write(devChar);
-            this.stream.WriteLine();
+                if (this.stream == Console.Out)
+                {
+                    repeat = Console.WindowWidth;
+                }
+
+                for (int i = 0; i < repeat - 1; ++i)
+                    this.stream.Write(devChar);
+            }
+            catch(Exception)
+            {
+            }
+            finally
+            {
+                this.stream.WriteLine();
+            }
         }
 
         /// <summary>

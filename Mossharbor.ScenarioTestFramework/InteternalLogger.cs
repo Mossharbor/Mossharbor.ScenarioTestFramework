@@ -151,21 +151,6 @@ namespace Mossharbor.ScenarioTestFramework
         {
             get
             {
-                if (String.IsNullOrEmpty(this.logFileName))
-                {
-                    // Get running module name
-                    string moduleName = ((this.currentScenario.Assembly.Length > 0) ? this.currentScenario.Assembly : "UnknownModule");
-
-                    // Get default file name
-                    this.logFileName = String.Format("{0}_{1:yyyy-MM-dd_HH-mm-ss}.log", moduleName, DateTime.Now);
-
-                    // Check for parameter override
-                    this.logFileName = RuntimeParameters.Instance.GetCommandLineOptionDefault("thlog", this.logFileName);
-
-                    // Add log path
-                    this.logFileName = Path.Combine(InternalLogger.Instance.LogFileDirectory, this.logFileName);
-                }
-
                 return this.logFileName;
             }
         }
@@ -287,8 +272,43 @@ namespace Mossharbor.ScenarioTestFramework
 
         public InternalLogger()
         {
-            // Make sure the logfile directory exists
-            LogFileDirectory = Path.Combine(System.Environment.CurrentDirectory, "Logs");
+            if (RuntimeParameters.Instance.GetCommandLineOptionExists(CommandLineSwitches.Out))
+            {
+                string outValue = RuntimeParameters.Instance.GetCommandLineOptionDefault(CommandLineSwitches.Out, this.logFileName);
+
+                if (outValue.Contains(Path.DirectorySeparatorChar))
+                {
+                    this.logFileName = Path.GetFileName(outValue);
+                    this.logFileDirectory = Path.GetDirectoryName(outValue);
+
+                    if (string.IsNullOrEmpty(Path.GetExtension(this.logFileName)))
+                    {
+                        // then this was a direcctory
+                        this.logFileName = null;
+                        this.logFileDirectory = outValue;
+                    }
+                }
+            }
+
+            if (String.IsNullOrEmpty(this.logFileName))
+            {
+                // Get running module name
+                string moduleName = RuntimeParameters.Instance.AssemblyContainingFactory;
+
+                // Get default file name
+                this.logFileName = String.Format("{0}_{1:yyyy-MM-dd_HH-mm-ss}.log", moduleName, DateTime.Now);
+            }
+
+            if (string.IsNullOrEmpty(logFileDirectory))
+            {
+                this.logFileDirectory = Path.Combine(System.Environment.CurrentDirectory, "Logs");
+            }
+
+            if (!Directory.Exists(this.logFileDirectory))
+            {
+                Directory.CreateDirectory(this.logFileDirectory);
+            }
+
             this.curSubResult = Result.NoResult;
             this.scenarioStartTime = new DateTime(0);
             this.logProviders = new List<ILogProvider>();
@@ -300,6 +320,11 @@ namespace Mossharbor.ScenarioTestFramework
             lp = new DefaultLogProvider(new DebugOutputTextWriter(), "DebugOutputLogProvider");
             this.logProviders.Add(lp);
             logProviderActivityList.Add(lp.LogProviderName, true);
+
+            if (Path.GetExtension(this.logFileName) == ".txt" || Path.GetExtension(this.logFileName) == ".log")
+            {
+                LoadLogProvider(new FileLogProvider(Path.Combine(this.logFileDirectory, this.logFileName)), true);
+            }
 
             try
             {

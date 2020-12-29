@@ -25,6 +25,16 @@ namespace ScenarioExecutionAssistant
 
             //TODO check for scenarioName is null or not
 
+            if (string.IsNullOrEmpty(scenarioName) || scenarioName.ToLower() == "all")
+            {
+                foreach(var scenario in ScenarioManager.Instance.GetAllScenarios())
+                {
+                    ScenarioManager.Instance.ExecuteScenario(scenario);
+                    // ScenarioManager.Instance.Clear();
+                }
+                return;
+            }
+
             ScenarioManager.Instance.LoadScenario(scenarioName);
             ScenarioManager.Instance.ExecuteScenarios();
         }

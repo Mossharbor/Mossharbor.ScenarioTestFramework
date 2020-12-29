@@ -27,6 +27,20 @@ namespace Mossharbor.ScenarioTestFramework
             LoadScenarioFactory(factoryName, scenarioAssembly);
         }
 
+        public IEnumerable<string> GetAllScenarios()
+        {
+            List<string> scenariosloaded = new List<string>();
+            foreach (var fac in this.factories)
+            {
+                foreach(var scenario in fac.ScenarioList)
+                {
+                    scenariosloaded.Add(scenario);
+                }
+            }
+
+            return scenariosloaded;
+        }
+
         public void LoadScenario(string scenarioName)
         {
             int execLoops = Math.Max(1, RuntimeParameters.Instance.ExecutionLoops);

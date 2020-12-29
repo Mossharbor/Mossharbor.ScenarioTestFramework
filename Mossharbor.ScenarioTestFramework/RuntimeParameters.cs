@@ -203,9 +203,9 @@ namespace Mossharbor.ScenarioTestFramework
 
                 string scenarioID = GetCommandLineOptionValue(CommandLineSwitches.ScenarioId);
                 if (!scenarioID.Contains(":"))
-                    return null;
+                    return scenarioID;
 
-                string[] splits = scenarioID.Split(":".ToCharArray());
+                string[] splits = scenarioID.Split(":".ToCharArray(),StringSplitOptions.RemoveEmptyEntries);
                 assemblyContainingFactory = splits[0];
 
                 return assemblyContainingFactory;
@@ -224,9 +224,9 @@ namespace Mossharbor.ScenarioTestFramework
                 if (!scenarioID.Contains(":"))
                     return null;
 
-                string[] splits = scenarioID.Split(":".ToCharArray());
+                string[] splits = scenarioID.Split(":".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
 
-                if (splits.Length <= 1)
+                if (splits.Length <= 2)
                     return null;
 
                 factoryContainingScenario = splits[1];
@@ -244,21 +244,19 @@ namespace Mossharbor.ScenarioTestFramework
                     return scenarioNameToRun;
 
                 string scenarioID = GetCommandLineOptionValue(CommandLineSwitches.ScenarioId);
-                if (!scenarioID.Contains(":"))
-                {
-                    scenarioNameToRun = scenarioID;
-                    return scenarioNameToRun;
-                }
 
-                string[] splits = scenarioID.Split(":".ToCharArray());
+                string[] splits = scenarioID.Split(":".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
 
-                if (splits.Length <= 1)
+                if (splits.Length == 1)
+                    return null;
+
+                if (splits.Length == 2)
                 {
                     scenarioNameToRun = splits[1];
                     return scenarioNameToRun;
                 }
 
-                scenarioNameToRun = splits[2];
+                scenarioNameToRun = splits[3];
 
                 return scenarioNameToRun;
             }
