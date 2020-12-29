@@ -78,7 +78,7 @@ namespace Mossharbor.ScenarioTestFramework
                 lastOption = String.Empty;
                 return isOption;
             }
-            else if (startsWithDash && (Directory.Exists(arg.Trim()) || File.Exists(arg.Trim())))
+            else if (startsWithSlash && (Directory.Exists(arg.Trim()) || File.Exists(arg.Trim())))
             {
                 lastOption = String.Empty;
                 return false;
