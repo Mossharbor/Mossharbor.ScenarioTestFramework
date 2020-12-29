@@ -142,18 +142,8 @@ namespace Mossharbor.ScenarioTestFramework
         /// <summary>
         /// The default log file name for any log providers that want it
         /// </summary>
-        private string logFileName;
-        /// <summary>
-        /// Default log file name without extension
-        /// </summary>
-        /// <remarks>Remember to add the file extension to the file name</remarks>
-        public string LogFileName
-        {
-            get
-            {
-                return this.logFileName;
-            }
-        }
+        private string textLogFileName;
+        private string xmlLogFileName;
 
         /// <summary>
         /// Used for creating link to debug Message Log
@@ -274,29 +264,31 @@ namespace Mossharbor.ScenarioTestFramework
         {
             if (RuntimeParameters.Instance.GetCommandLineOptionExists(CommandLineSwitches.Out))
             {
-                string outValue = RuntimeParameters.Instance.GetCommandLineOptionDefault(CommandLineSwitches.Out, this.logFileName);
+                string outValue = RuntimeParameters.Instance.GetCommandLineOptionDefault(CommandLineSwitches.Out, this.textLogFileName);
 
                 if (outValue.Contains(Path.DirectorySeparatorChar))
                 {
-                    this.logFileName = Path.GetFileName(outValue);
+                    this.textLogFileName = Path.GetFileName(outValue);
                     this.logFileDirectory = Path.GetDirectoryName(outValue);
 
-                    if (string.IsNullOrEmpty(Path.GetExtension(this.logFileName)))
+                    if (string.IsNullOrEmpty(Path.GetExtension(this.textLogFileName)))
                     {
                         // then this was a direcctory
-                        this.logFileName = null;
+                        this.textLogFileName = null;
                         this.logFileDirectory = outValue;
                     }
                 }
             }
 
-            if (String.IsNullOrEmpty(this.logFileName))
+            if (String.IsNullOrEmpty(this.textLogFileName))
             {
+                DateTime time = DateTime.Now;
+
                 // Get running module name
                 string moduleName = RuntimeParameters.Instance.AssemblyContainingFactory;
 
                 // Get default file name
-                this.logFileName = String.Format("{0}_{1:yyyy-MM-dd_HH-mm-ss}.log", moduleName, DateTime.Now);
+                this.textLogFileName = String.Format("{0}_{1:yyyy-MM-dd_HH-mm-ss}.log", moduleName, time);
             }
 
             if (string.IsNullOrEmpty(logFileDirectory))
@@ -321,9 +313,15 @@ namespace Mossharbor.ScenarioTestFramework
             this.logProviders.Add(lp);
             logProviderActivityList.Add(lp.LogProviderName, true);
 
-            if (RuntimeParameters.Instance.GetCommandLineOptionExists(CommandLineSwitches.Out) && (Path.GetExtension(this.logFileName) == ".txt" || Path.GetExtension(this.logFileName) == ".log"))
+            if (RuntimeParameters.Instance.GetCommandLineOptionExists(CommandLineSwitches.Out) && (Path.GetExtension(this.textLogFileName) == ".txt" || Path.GetExtension(this.textLogFileName) == ".log"))
             {
-                LoadLogProvider(new FileLogProvider(Path.Combine(this.logFileDirectory, this.logFileName)), true);
+                LoadLogProvider(new FileLogProvider(Path.Combine(this.logFileDirectory, this.textLogFileName)), true);
+            }
+
+            if (RuntimeParameters.Instance.GetCommandLineOptionExists(CommandLineSwitches.Out))
+            {
+                this.xmlLogFileName = Path.ChangeExtension(this.textLogFileName, ".summary.xml");
+                LoadLogProvider(new XmlSummaryLogger(Path.Combine(this.logFileDirectory, this.xmlLogFileName)));
             }
 
             try
