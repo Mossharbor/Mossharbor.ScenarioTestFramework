@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Mossharbor.ScenarioTestFramework</id>
-    <version>1.0.6</version>
+    <version>1.0.7</version>
     <authors>M@ J.</authors>
     <owners>M@ J.</owners>
     <licenseUrl>https://raw.githubusercontent.com/Mossharbor/Mossharbor.ScenarioTestFramework/master/LICENSE</licenseUrl>
