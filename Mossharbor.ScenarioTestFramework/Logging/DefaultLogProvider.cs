@@ -117,8 +117,11 @@ namespace Mossharbor.ScenarioTestFramework
                     repeat = Console.WindowWidth;
                 }
 
+                StringBuilder sb = new StringBuilder();
                 for (int i = 0; i < repeat - 1; ++i)
-                    this.stream.Write(devChar);
+                    sb.Append(devChar);
+
+                this.stream.Write(sb.ToString());
             }
             catch(Exception)
             {
